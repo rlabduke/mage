@@ -1,0 +1,120 @@
+# 20111002 Makefile work on moroxite:
+# OSX 10.6.8 snow leopard only on intel, universal binaries are dead.
+## OK, let's call INTEL i386 combined with an INTEL x86_64 galaxyonic binaries
+# For the the operating system 10.6.8 the ppc arch doesn't exist, 10.6 is only intel.
+# Four options: ## Make that two options looking at this angle ...
+# 32bit PowerPC (-arch ppc); ## Nope
+# 64bit PowerPC (-arch ppc64); ## Nope
+# 32bit Intel (-arch i386);
+# 64bit Intel (-arch x86_64).  
+# Choice of what OSX you want the application to run on, three options: 
+# 10.5 (leopard); ## Waste of time
+# 10.6 (snow leopard);
+# 10.7 (lion);
+## 10.8 (mountain lion).
+# The choices are NOT independent: 
+# 10.5 is the last OSX to run on PowerPC chips; ## irrelevant
+# 10.6 runs on all Intel chips; ## and is not being dropped by the Apple Users to ride one of the lions!!!
+# 10.7 runs only on 64bit capable Intel chips 
+#       whether or not it is running in 32 bit or 64bit mode.
+# 10.8 runs only on 64bit capable Intel chips in 64 bit mode.
+# go for a 10.5 library compile with a simple 32bit Intel architecture.
+## was the world that simple at one point???
+## Let's go for a Lion compile of a 32 bit and 64 bit Snow Leopard and Lion SDKs.
+# The Makefile will need to contain the address for those libraries: 
+# "/Developer/SDKs/MacOSX10.5.sdk", ## "/Developer/SDKs/MacOSX10.6.sdk" and "/Developer/SDKs/MacOSX10.7.sdk"
+# the architecture flag: "-arch i386", 
+# and because using the 10.7 compiler for each instance of the -arch flag another flag stating that you are compiling for an earlier system: 
+# "-mmacosx-version-min=10.6". 
+# This plus all the other weird stuff for a mage bundle (GUI) might work.
+## OH, and don't forget we need to update the Mage/X11 launcher.  I've done some work for one possible out using Automator.
+# ...comments left over from earlier:
+# Standard C libraries and header files are in /Developer/SDKs/MacOSX10.4u.sdk
+# Motif header files are in /usr/local/include/
+# Xwindow libraries and header files are in /usr/X11R6/include/
+# the headerpad flag reserves extra room in compiled objects to change disk 
+# address (if needed)
+# the arch flags are obvious, also available is -ppc64 for 64bit executable (G5)
+# the -g flag supposedly invokes a debugger
+# 20121100:WBA -> Mountain Lion, compiled fink ->/sw , fink compiled Motif
+# 20121100 C Libraries & headers in Xcode.app , X11 & Xm etc in /sw/include
+# 20121107 rearrange and consistency work on dependencies lists
+# NOTE: backslash line continuator must be last character on its line
+
+ifeq ($(MAKECMDGOALS),debug)
+   CFLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk \
+       -arch x86_64 -I/sw/include/ -I/usr/X11/include/ 
+else
+   CFLAGS = -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -arch x86_64  \
+       -I/sw/include/ -I/usr/X11R6/include/
+endif
+
+   FIN =  -lm -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk \
+          -arch x86_64 
+
+   MAGEHEADERS = MAGE.h MAGEhdr.h
+
+   OBJS = MAGEANGL.o MAGEBALL.o MAGEBBOX.o MAGECLON.o MAGECOLR.o \
+          MAGEDLOG.o MAGEDRAW.o MAGEFILE.o MAGEFOO.o  MAGEHELP.o \
+          MAGEINIT.o MAGEINPT.o MAGELIST.o MAGEMENU.o MAGEOUT.o  \
+          MAGEOUTR.o MAGEPOST.o MAGEREND.o MAGESCOR.o MAGESCRT.o \
+          MAGESETS.o MAGESYNC.o MAGETABL.o MAGEUTIL.o MUXMBAR.o  \
+          MUXMBBOX.o MUXMCOLR.o MUXMDLOG.o MUXMDRAW.o MUXMFILE.o \
+          MUXMINIT.o MUXMMAIN.o MUXMMENU.o MUXMOUT.o  MUXMPIPE.o \
+          MUXMTABL.o MUXMWIND.o 
+
+   LIBS = -L/Applications/Mage.app/Contents/lib -L/sw/lib -L/usr/X11/lib \
+          -lXm.4 -lXt -lX11 -lSM -lICE -lpng15.15 -ljpeg.8 
+
+# ------------------------------------------------------------------------
+
+mage: $(OBJS)
+	$(CC) -o mage $(OBJS) $(LIBS) $(FIN)
+	
+debug: $(OBJS)
+	$(CC) -o mage $(OBJS) $(LIBS) $(FIN)
+
+clean:
+	rm -f *.o
+
+# ------------------------------------------------------------------------
+# Dependencies  (presume .o<-.c by standard cc compiler)
+MAGEANGL.o: $(MAGEHEADERS) MAGEANGL.h MAGEBBOX.h MAGEFLAG.h MAGELIST.h
+MAGEBALL.o: $(MAGEHEADERS) MAGEANGL.h MAGEBBOX.h MAGELIST.h MAGEFLAG.h MAGEFOO.h MAGEMENU.h MAGEBALL.h
+MAGEBBOX.o: $(MAGEHEADERS) MAGEANGL.h MAGEBBOX.h MAGEFLAG.h MAGEFOO.h MAGELIST.h MAGEMENU.h MAGETABL.h
+MAGECLON.o: $(MAGEHEADERS) MAGELIST.h MAGEFLAG.h MAGECLON.h
+MAGECOLR.o: $(MAGEHEADERS) MAGELIST.h MAGECOLR.h
+MAGEDLOG.o: $(MAGEHEADERS) MAGEANGL.h MAGEBBOX.h MAGEDLOG.h MAGEFLAG.h MAGEFOO.h MAGELIST.h MAGEMENU.h MAGETABL.h MAGESYNC.h MAGESCRT.h MAGEOUTR.h
+MAGEDRAW.o: $(MAGEHEADERS) MAGEANGL.h MAGEDLOG.h MAGEFLAG.h MAGEFOO.h MAGELIST.h MAGETABL.h MAGEPOST.h
+MAGEFILE.o: $(MAGEHEADERS) MAGEANGL.h MAGEBBOX.h MAGELIST.h MAGETABL.h MAGEFLAG.h
+MAGEFOO.o:  $(MAGEHEADERS) MAGEANGL.h MAGEBBOX.h MAGELIST.h MAGEFLAG.h MAGEFOO.h MAGEMENU.h
+MAGEHELP.o: $(MAGEHEADERS)
+MAGEINIT.o: $(MAGEHEADERS) MAGEANGL.h MAGEBBOX.h MAGEDLOG.h MAGEFOO.h MAGELIST.h MAGESYNC.h MAGETABL.h
+MAGEINPT.o: $(MAGEHEADERS) MAGEANGL.h MAGEBBOX.h MAGECOLR.h MAGEFLAG.h MAGEFOO.h MAGELIST.h MAGETABL.h
+MAGELIST.o: $(MAGEHEADERS) MAGEBBOX.h MAGEFLAG.h MAGELIST.h
+MAGEMENU.o: $(MAGEHEADERS) MAGEANGL.h MAGEBBOX.h MAGEDLOG.h MAGEFLAG.h MAGELIST.h MAGEMENU.h MAGETABL.h
+MAGEOUT.o:  $(MAGEHEADERS) MAGEANGL.h MAGEBBOX.h MAGECOLR.h MAGEFLAG.h MAGELIST.h MAGEPOST.h MAGETABL.h MAGESCRT.h MAGEOUTR.h
+MAGEOUTR.o: $(MAGEHEADERS) MAGESCRT.h MAGEOUTR.h
+MAGEPOST.o: $(MAGEHEADERS) MAGEANGL.h MAGEPOST.h MAGELIST.h MAGEFLAG.h MAGECMYK.h MAGECOLR.h MAGETABL.h
+MAGEREND.o: $(MAGEHEADERS) MAGEANGL.h MAGELIST.h MAGEFLAG.h MAGEREND.h MAGETABL.h
+MAGESCOR.o: $(MAGEHEADERS) MAGEBBOX.h MAGEFLAG.h MAGELIST.h 
+MAGESCRT.o: $(MAGEHEADERS) MAGESCRT.h
+MAGESETS.o: $(MAGEHEADERS) MAGEANGL.h MAGEFLAG.h MAGELIST.h MAGECLON.h MAGETABL.h MAGEBALL.h
+MAGESYNC.o: $(MAGEHEADERS) MAGEANGL.h MAGESYNC.h
+MAGETABL.o: $(MAGEHEADERS) MAGEBBOX.h MAGEFLAG.h MAGELIST.h MAGETABL.h
+MAGEUTIL.o: $(MAGEHEADERS) MAGEANGL.h MAGEBBOX.h MAGEFLAG.h MAGELIST.h MAGEMENU.h MAGETABL.h
+MUXMBAR.o:  $(MAGEHEADERS) MAGEANGL.h MAGEFLAG.h MAGELIST.h MAGETABL.h MAGESYNC.h
+MUXMBBOX.o: $(MAGEHEADERS) MAGEBBOX.h MAGELIST.h
+MUXMCOLR.o: $(MAGEHEADERS) MAGECOLR.h
+MUXMDLOG.o: $(MAGEHEADERS) MAGEANGL.h MAGEDLOG.h MAGEFLAG.h MAGELIST.h MAGEMENU.h MAGETABL.h
+MUXMDRAW.o: $(MAGEHEADERS) MAGELIST.h MAGETABL.h MAGESYNC.h
+MUXMFILE.o: $(MAGEHEADERS)
+MUXMINIT.o: $(MAGEHEADERS) MAGELIST.h MAGEMENU.h MAGETABL.h
+MUXMMAIN.o: $(MAGEHEADERS) MAGEANGL.h MAGEDLOG.h MAGELIST.h MAGETABL.h MAGEMENU.h MAGESYNC.h
+MUXMMENU.o: $(MAGEHEADERS) MAGEDLOG.h MAGELIST.h MAGEMENU.h MAGETABL.h
+MUXMOUT.o:  $(MAGEHEADERS) MAGEDLOG.h MAGELIST.h MAGETABL.h
+MUXMPIPE.o: $(MAGEHEADERS) MAGEBBOX.h MAGEDLOG.h MAGEFLAG.h MAGELIST.h
+MUXMTABL.o: $(MAGEHEADERS) MAGEMENU.h MAGELIST.h MAGETABL.h
+MUXMWIND.o: $(MAGEHEADERS) MAGELIST.h MAGETABL.h
+
+
