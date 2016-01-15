@@ -1,18 +1,19 @@
-# /Users/wbarendall/Code/MAKES/mage.6.57.121213/Makefile.macOSX_a1
-# use: $/path/to/compiledir > make -f Makefile.macOSX_a1
-# Makefilex mage.6.57.130309x  -I/sw/include/ ... -L/sw/lib 
+# /Users/wbarendall/Code/MAKES/mage.6.57.121213/Makefile.macOSX_a1 (a1 date)
+# use: $/path/to/compiledir > make -f Makefile.macOSX_a1 (pre 130309)
+# Makefilex mage.6.57.130309x  -I/sw/include/ ... -L/sw/lib (hence magex 10.8) 
+# Makefilex mage.6.58.160114   -I/sw/include/ ... -L/sw/lib (now for 10.11)
 # libXm.4.dylib* libjpeg.8.dylib* libpng15.15.dylib*
 
-# MACOSX_DEPLOYMENT_TARGET="10.8"
+# MACOSX_DEPLOYMENT_TARGET="10.11"
 
 ifeq ($(MAKECMDGOALS),debug)
-   CFLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk \
+   CFLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk \
        -arch x86_64 -I/sw/include/ -I/usr/X11/include/ 
 else
-   CFLAGS = -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -arch x86_64 -I/sw/include/ -I/usr/X11R6/include/
+   CFLAGS = -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk -arch x86_64 -I/sw/include/ -I/usr/X11R6/include/
 endif
 
-   FIN =  -lm -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk \
+   FIN =  -lm -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk \
           -arch x86_64
 
    MAGEHEADERS = MAGE.h MAGEhdr.h

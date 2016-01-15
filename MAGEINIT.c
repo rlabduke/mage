@@ -360,7 +360,8 @@ static char* magechangesstdout[] =
 ,"141031 NucleicAcidParameters cleanup... define PprojRatio\r"
 ,"141106 fix ratio, other NucleicAcidParameters\r"
 ,"141126 fix doconstructline logic, replace param points: float and int parts\r"
-,"\r"
+,"160114 post El Capitan upgrade but old Fink sw/ Makefilex mage.6.58.160114\r"
+,"       Makefilex call for ...SDKs/MacOSX10.11.sdk \r"
 ,"\r"
 ,"END\r"
 }; /*magechanges()*/
@@ -401,7 +402,7 @@ CRLF"Show Rotations, IOprekin-pipe, simulations, dock3on3"
 
 
 /*COMPILE IN CHANGED DATE AND MAGE VERSION*/
-         sprintf(temps," dated:  141126 /sw/libXm " ); 
+         sprintf(temps," dated:  160114 /sw/libXm " ); 
          MAGEVERSION = (float)6.58; /*display format only has 2 decimal places*/
 /*CAN TINKER WITH (SO NEEDS TO BE CHECKED) this word character string to put in
   x or other version number modifiers to be displayed on banner */
