@@ -11,5 +11,5 @@ Dependencies on mac:
 
 # Building
 
-Use CMake to compile this program.  It compiles and runs under Linux as of 1/6/2021.
+Use CMake to compile this program.  It compiles and runs on Ubuntu 18.04 and MacOSX as of 1/6/2021.
 
