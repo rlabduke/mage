@@ -79,8 +79,11 @@ set(mage_HEADERS
 
 add_executable(mage ${mage_SOURCES} ${mage_HEADERS})
 if (NOT WIN32)
-  target_link_libraries(mage ${MOTIF_LIBRARIES} X11::Xt X11::X11 m)
-  message("Motif ${MOTIF_LIBRARIES}")
-  message("X11 ${X11_LIBRARIES}")
+  if (APPLE)
+    target_link_libraries(mage ${MOTIF_LIBRARIES} X11::Xt X11::X11 m)
+  else()
+    # Not sure why the above does not work on Ubuntu 20.04
+    target_link_libraries(mage ${MOTIF_LIBRARIES} Xt X11 m)
+  endif()
 endif()
 
