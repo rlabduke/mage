@@ -73,7 +73,7 @@ set(mage_HEADERS
 )
 
 add_executable(mage ${mage_SOURCES} ${mage_HEADERS})
-if (LINUX)
+if (NOT WIN32)
   target_link_libraries(mage Xm Xt ${X11_LIBRARIES} m)
 endif()
 
