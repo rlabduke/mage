@@ -3,7 +3,7 @@ project(mage)
 
 if (WIN32)
   add_definitions(-D_CRT_SECURE_NO_WARNINGS)
-endif ()
+endif()
 
 set(mage_SOURCES
   MAGEANGL.c
@@ -42,7 +42,6 @@ set(mage_SOURCES
   MUXMMENU.c
   MUXMOUT.c
   MUXMPIPE.c
-  MUXMQUES.c
   MUXMTABL.c
   MUXMWIND.c
 )
@@ -72,5 +71,6 @@ set(mage_HEADERS
 
 add_executable(mage ${mage_SOURCES} ${mage_HEADERS})
 if (NOT WIN32)
-  target_link_libraries(mage m)
+  target_link_libraries(mage Xm Xt X11 m)
 endif()
+
