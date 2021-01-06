@@ -3,6 +3,10 @@ project(mage)
 
 if (WIN32)
   add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+  # Use MFC
+  add_definitions(-D_AFXDLL)
+  # Use static MFC libraries
+  set(CMAKE_MFC_FLAG 1)
 else ()
   find_package(Motif REQUIRED)
   find_package(X11 REQUIRED)
