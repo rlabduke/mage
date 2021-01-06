@@ -6,7 +6,7 @@ if (WIN32)
 else ()
   find_package(Motif REQUIRED)
   find_package(X11 REQUIRED)
-  include_directories(${MOTIF_INCLUDE_DIR} ${X11_INCLUDE_DIR})
+  include_directories(${MOTIF_INCLUDE_DIR})
 endif()
 
 set(mage_SOURCES
@@ -75,6 +75,8 @@ set(mage_HEADERS
 
 add_executable(mage ${mage_SOURCES} ${mage_HEADERS})
 if (NOT WIN32)
-  target_link_libraries(mage ${MOTIF_LIBRARIES} Xt ${X11_LIBRARIES} m)
+  target_link_libraries(mage ${MOTIF_LIBRARIES} X11::Xt X11::X11 m)
+  message("Motif ${MOTIF_LIBRARIES}")
+  message("X11 ${X11_LIBRARIES}")
 endif()
 
