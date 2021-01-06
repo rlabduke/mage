@@ -1,0 +1,76 @@
+cmake_minimum_required(VERSION 3.10.0)
+project(mage)
+
+if (WIN32)
+  add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+endif ()
+
+set(mage_SOURCES
+  MAGEANGL.c
+  MAGEBALL.c
+  MAGEBBOX.c
+  MAGECLON.c
+  MAGECOLR.c
+  MAGEDLOG.c
+  MAGEDRAW.c
+  MAGEFILE.c
+  MAGEFOO.c
+  MAGEHELP.c
+  MAGEINIT.c
+  MAGEINPT.c
+  MAGELIST.c
+  MAGEMENU.c
+  MAGEOUT.c
+  MAGEOUTR.c
+  MAGEPIXL.c
+  MAGEPOST.c
+  MAGEREND.c
+  MAGESCOR.c
+  MAGESCRT.c
+  MAGESETS.c
+  MAGESYNC.c
+  MAGETABL.c
+  MAGEUTIL.c
+  MUXMBAR.c
+  MUXMBBOX.c
+  MUXMCOLR.c
+  MUXMDLOG.c
+  MUXMDRAW.c
+  MUXMFILE.c
+  MUXMINIT.c
+  MUXMMAIN.c
+  MUXMMENU.c
+  MUXMOUT.c
+  MUXMPIPE.c
+  MUXMQUES.c
+  MUXMTABL.c
+  MUXMWIND.c
+)
+
+set(mage_HEADERS
+  MAGEANGL.h
+  MAGEBALL.h
+  MAGEBBOX.h
+  MAGECLON.h
+  MAGECMYK.h
+  MAGECOLR.h
+  MAGEDLOG.h
+  MAGEFLAG.h
+  MAGEFOO.h
+  MAGE.h
+  MAGEhdr.h
+  MAGEHELP.h
+  MAGELIST.h
+  MAGEMENU.h
+  MAGEOUTR.h
+  MAGEPOST.h
+  MAGEREND.h
+  MAGESCRT.h
+  MAGESYNC.h
+  MAGETABL.h
+)
+
+add_executable(mage ${mage_SOURCES} ${mage_HEADERS})
+if (NOT WIN32)
+  target_link_libraries(mage m)
+endif()
