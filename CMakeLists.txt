@@ -7,6 +7,10 @@ if (WIN32)
   add_definitions(-D_AFXDLL)
   # Use static MFC libraries
   set(CMAKE_MFC_FLAG 1)
+else ()
+  find_package(Motif REQUIRED)
+  find_package(X11 REQUIRED)
+  include_directories(${MOTIF_INCLUDE_DIR} ${X11_INCLUDE_DIR})
 endif()
 
 set(mage_SOURCES
@@ -75,6 +79,6 @@ set(mage_HEADERS
 
 add_executable(mage ${mage_SOURCES} ${mage_HEADERS})
 if (NOT WIN32)
-  target_link_libraries(mage Xm Xt X11 m)
+  target_link_libraries(mage ${MOTIF_LIBRARIES} Xt ${X11_LIBRARIES} m)
 endif()
 
