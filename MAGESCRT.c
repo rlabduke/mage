@@ -119,11 +119,11 @@ void buildtextblock(textblock* tb, size_t more)
     if(Ltest||ifail)
     {
         if(ifail)
-            sprintf(alertstr,CRLF"+%d text block reallocation failed"CRLF
+            sprintf(alertstr,CRLF"+%d text block reallocation failed" CRLF
                              ", remains: %ld"
                     ,moretry,(tb->end - tb->begin));
         else
-            sprintf(alertstr,CRLF"text block allocation now == %ld"CRLF
+            sprintf(alertstr,CRLF"text block allocation now == %ld" CRLF
                    ,(tb->end - tb->begin));
 
         dosinglealert(0);

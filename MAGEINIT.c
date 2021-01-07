@@ -1208,11 +1208,11 @@ void    allocdisplayarrays(int more)
             sprintf(alertstr,"MAXDRAWS== %ld",MAXDRAWS);
 
         sprintf(alertstr2,
-          // "alloc: it[0]==%ld, it[1]==%ld, it[2]==%ld, it[3]==%ld"CRLF
-          // "alloc: it[4]==%ld, it[5]==%ld, it[6]==%ld, it[7]==%ld"CRLF
+          // "alloc: it[0]==%ld, it[1]==%ld, it[2]==%ld, it[3]==%ld" CRLF
+          // "alloc: it[4]==%ld, it[5]==%ld, it[6]==%ld, it[7]==%ld" CRLF
           // "alloc: linkit==%ld, itpointptr==%ld" /*121107 %p for address*/
-           "alloc: it[0]==%p, it[1]==%p, it[2]==%p, it[3]==%p"CRLF
-           "alloc: it[4]==%p, it[5]==%p, it[6]==%p, it[7]==%p"CRLF
+           "alloc: it[0]==%p, it[1]==%p, it[2]==%p, it[3]==%p" CRLF
+           "alloc: it[4]==%p, it[5]==%p, it[6]==%p, it[7]==%p" CRLF
            "alloc: linkit==%p, itpointptr==%p" /*121107 %p for address*/
          ,it[0],it[1],it[2],it[3],it[4],it[5],it[6],it[7],linkit,itpointptr);
 

@@ -2115,35 +2115,35 @@ void dohelpintextwin(int ihelp)
       {/*dump the help menus to the text window*/
          Linternal = 1;
          inserttexts(CRLF);
-         inserttexts(CRLF"----------Keyboard Shortcuts----------"CRLF);
+         inserttexts(CRLF"----------Keyboard Shortcuts----------" CRLF);
          menuaboutsecrets(0);  /*Keyboard Shortcuts*/
-         inserttexts(CRLF"----------Input/Output Help----------"CRLF);
+         inserttexts(CRLF"----------Input/Output Help----------" CRLF);
          menuaboutwrite(0); /*Output Help*/
-         inserttexts(CRLF"----------Screen Capture Help----------"CRLF);
+         inserttexts(CRLF"----------Screen Capture Help----------" CRLF);
          menuaboutscreenout(0);  /*Screen Output Help*/
-         inserttexts(CRLF"----------Editing Help----------"CRLF);
+         inserttexts(CRLF"----------Editing Help----------" CRLF);
          menuaboutedit(0);  /*Edit Help*/
-         inserttexts(CRLF"----------Display Options Help----------"CRLF);
+         inserttexts(CRLF"----------Display Options Help----------" CRLF);
          menuaboutoptions(0);  /*Display Help*/
-         inserttexts(CRLF"----------Special Display Help----------"CRLF);
+         inserttexts(CRLF"----------Special Display Help----------" CRLF);
          menuaboutspecial(0);  /*Special Display Help*/
-         inserttexts(CRLF"----------Tools Help----------"CRLF);
+         inserttexts(CRLF"----------Tools Help----------" CRLF);
          menuaboutOther(0); /*Tools Help*/
-         inserttexts(CRLF"----------Kludges: More Tools----------"CRLF);
+         inserttexts(CRLF"----------Kludges: More Tools----------" CRLF);
          menuaboutkluges(0);  /*Kludges: More Tools*/
-         inserttexts(CRLF"----------Mouse Operations----------"CRLF);
+         inserttexts(CRLF"----------Mouse Operations----------" CRLF);
          menuaboutmouse(0);  /*Mouse Operations*/
-         inserttexts(CRLF"----Docking and More Mouse Operations----"CRLF);
+         inserttexts(CRLF"----Docking and More Mouse Operations----" CRLF);
          menuaboutdocking(0);  /*Mouse Operations*/
-         inserttexts(CRLF"----------Window Resizing----------"CRLF);
+         inserttexts(CRLF"----------Window Resizing----------" CRLF);
          menuaboutresize(0);  /*Window Resizing*/
-         inserttexts(CRLF"----------Table Help----------"CRLF);
+         inserttexts(CRLF"----------Table Help----------" CRLF);
          menuabouttable(0);  /*Table Help*/
-         inserttexts(CRLF"----------Bonds Help----------"CRLF);
+         inserttexts(CRLF"----------Bonds Help----------" CRLF);
          menuaboutbonds(0);  /*Bonds Help 130119*/
-         inserttexts(CRLF"----------3D Test Help----------"CRLF);
+         inserttexts(CRLF"----------3D Test Help----------" CRLF);
          menuabouttest3D(0);  /*3D Test Help*/
-         inserttexts(CRLF"----------NDIM Help----------"CRLF);
+         inserttexts(CRLF"----------NDIM Help----------" CRLF);
          menuaboutNDIM(0);  /*NDIM Help 130119*/
          Linternal = 0; /*restore*/
       }/*dump the help menus to the text window*/

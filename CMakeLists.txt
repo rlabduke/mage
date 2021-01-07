@@ -7,6 +7,10 @@ if (WIN32)
   add_definitions(-D_AFXDLL)
   # Use static MFC libraries
   set(CMAKE_MFC_FLAG 1)
+
+  # We need to compile as C++ to get MFC working
+  file(GLOB_RECURSE CFILES "${CMAKE_SOURCE_DIR}/*.c")
+  SET_SOURCE_FILES_PROPERTIES(${CFILES} PROPERTIES LANGUAGE CXX)
 else ()
   find_package(Motif REQUIRED)
   find_package(X11 REQUIRED)
