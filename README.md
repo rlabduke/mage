@@ -17,6 +17,7 @@ Dependencies on Windows:
 Use CMake to compile this program.  It compiles and runs on Ubuntu 18.04 and MacOSX as of 1/6/2021.
 
 Assuming that this code is checked out in ~/src/mage and all dependencies are available, the following will compile it
+
     mkdir -p ~/build/mage
     cd ~/build/mage
     cmake ~/src/mage
