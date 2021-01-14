@@ -5291,7 +5291,7 @@ fprintf(stderr,"target thislistptr== %0x, in trgsgrpptr==%0x\n",thislistptr,trgs
 /****maketargetsgrp()*********************************************************/
 int  maketargetsgrp(grupstruct* trggrupptr, sgrpstruct* srcsgrpptr, char* name)
 {
-   int ireturn=0;n=0;
+   int ireturn=0, n=0;
  
    if(allocsgrpstructure()) /*creates global thissgrpptr*/
    {/*connect to trggrupptr, and set properties*/
@@ -5326,7 +5326,7 @@ fprintf(stderr,"target ssgrpptr== %0x, in trggrupptr==%0x\n",thissgrpptr,trggrup
 /****maketargetgrup()*********************************************************/
 int  maketargetgrup(grupstruct* srcgrupptr, char* name)
 {
-   int ireturn=0;n=0;
+   int ireturn=0, n=0;
  
    if(allocgrupstructure()) /*creates global thisgrupptr*/
    {/* set properties (alloc routine positions this in set of all groups*/

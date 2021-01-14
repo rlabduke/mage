@@ -1,3 +1,6 @@
+#include "MAGE.h"
+#include "MAGEDLOG.h"
+
 /*3456789_123456789_123456789_123456789_123456789_123456789_123456789_12345678*/
 /*****DoQuesDialog************************************************************/
 void    DoQuesDialog()
@@ -7,7 +10,7 @@ void    DoQuesDialog()
  if(!ACTIVE_DLOG)
  {
 /*overall DLOG box********************************/
-  n = 0; 
+  int n = 0; 
   XtSetArg(args[n], XmNvisual, magevisual); n++;
   XtSetArg(args[n], XmNdepth, magedepth); n++;
   XtSetArg(args[n], XmNcolormap, colormap); n++;
@@ -123,7 +126,7 @@ void questionDialog()
    XmString    xmstring;
 
 
-   for(j=0;j<=iQstring;j++) word[j] = Qstring[j]; 
+   for(int j=0;j<=iQstring;j++) word[j] = Qstring[j]; 
    XmTextSetString(questionanswer, word);  
 
    sprintf(word,"Current Answer: Question # %d",nQuestion);
@@ -136,7 +139,7 @@ void questionDialog()
 XtCallbackProc question_OK_CB(Widget w,XtPointer client_data
                                       ,XtPointer call_data)
 {
-   char thestr[256];
+   char *thestr;
    int j=0;
 
    thestr = (char *)XmTextGetString(questionanswer);
