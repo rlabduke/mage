@@ -2347,6 +2347,7 @@ int        listfirstline(int c,int Lnew)
                 /* working in ------- LIST PARAMETERS -----------*/
                 else if(Ldimension) /*060121, all sets 060622*/
                 {
+                       int n;
                        sscanf(word,"%d",&n);
                        thislistptr->NDIM = n;
                        NDIM = thislistptr->NDIM; /*set global with latest NDIM*/

@@ -499,7 +499,7 @@ dosinglealert(3);
    }
    else
    {   /*section reworked 050927*/
-      sprintf(alertstr,"EOF reached without finding"CRLF
+      sprintf(alertstr,"EOF reached without finding" CRLF
       "@text or @kinemage in this file.");
       dosinglealert(0);
       IOerr = 1;
@@ -510,11 +510,11 @@ dosinglealert(3);
       sprintf(texts,CRLF" Looked for kinemages in file:");
       inserttexts(texts);   /* ____WIND.c */
 
-      sprintf(texts,CRLF" %s"CRLF,NameStr);
+      sprintf(texts,CRLF" %s" CRLF,NameStr);
       inserttexts(texts);   /* ____WIND.c */
 
       /*MPCDLOG will have cleared alertstr, so reprint it here on spec*/
-      sprintf(alertstr,"EOF reached without finding"CRLF
+      sprintf(alertstr,"EOF reached without finding" CRLF
       "@text or @kinemage in this file.");
       inserttexts(alertstr);  /*____WIND.c */
 
