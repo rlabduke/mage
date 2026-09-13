@@ -28,3 +28,7 @@ Assuming that this code is checked out in ~/src/mage and all dependencies are av
 On the mac, you will need the [XQuartz](https://xquartz.org) or another X Windows server running when mage is started.
 
 Then, from the build directory you type `./mage` to run it.
+
+## License
+
+BSD-3-Clause; see [LICENSE](LICENSE). Two source files carry J. Michael Word's 1999 copyright notice, which is retained.
